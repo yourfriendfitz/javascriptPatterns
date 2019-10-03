@@ -1,20 +1,25 @@
-let instance = null;
-
 class Car {
   constructor(doors, engine, color) {
-    if (!instance) {
-      this.doors = doors;
-      this.engine = engine;
-      this.color = color;
-      instance = this;
-    } else {
-      return instance;
+    this.doors = doors;
+    this.engine = engine;
+    this.color = color;
+  }
+}
+
+class carFactory {
+  createCar(type) {
+    switch (type) {
+      case "civic":
+        return new Car(4, "V6", "grey");
+      case "honda":
+        return new Car(2, "V4", "red");
     }
   }
 }
 
-const civic = new Car(4, "V6", "grey");
-const honda = new Car(2, "V4", "red");
+const factory = new carFactory();
 
-console.log(civic);
-console.log(honda);
+const honda = factory.createCar("honda");
+const civic = factory.createCar("civic");
+
+console.log(honda, civic);
