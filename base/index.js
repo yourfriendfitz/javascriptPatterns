@@ -1,5 +1,11 @@
-const calc = () => 4 * 5;
+class Car {
+  constructor(doors, engine, color) {
+    this.doors = doors;
+    this.engine = engine;
+    this.color = color;
+  }
+}
 
-const printCalc = callback => console.log(callback());
+const civic = new Car(4, "V6", "grey");
 
-printCalc(calc);
+console.log(civic);
