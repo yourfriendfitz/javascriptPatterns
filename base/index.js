@@ -17,38 +17,24 @@ class CarFactory {
   }
 }
 
-class Suv {
-  constructor(doors, engine, color) {
-    this.doors = doors;
-    this.engine = engine;
-    this.color = color;
-    this.wheels = 4;
+let carMixin = {
+  revEngine() {
+    console.log(`The ${this.engine} is doing Vroom Vroom`);
   }
-}
-
-class SuvFactory {
-  createSuv(type) {
-    switch (type) {
-      case "cx5":
-        return new Suv(4, "V8", "black");
-      case "bronco":
-        return new Suv(2, "V8", "white");
-    }
-  }
-}
+};
 
 const carFactory = new CarFactory();
-const suvFactory = new SuvFactory();
 
 const autoManufacturer = (type, model) => {
   switch (type) {
     case "car":
       return carFactory.createCar(model);
-    case "suv":
-      return suvFactory.createSuv(model);
   }
 };
 
-const cx5 = autoManufacturer("suv", "cx5");
+Object.assign(Car.prototype, carMixin);
 
-console.log(cx5);
+const civic = autoManufacturer("car", "civic");
+
+console.log(civic);
+civic.revEngine();
